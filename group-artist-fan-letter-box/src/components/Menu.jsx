@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const MenuStyle = styled.div`
+const StyledMenu = styled.div`
+  display: flex;
   width: 500px;
-  height: 50px;
+  height: 100px;
+  padding: 50px;
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
@@ -13,14 +15,10 @@ const MenuStyle = styled.div`
 `;
 
 function Menu() {
-  return (
-    <MenuStyle>
-      <button>Menu</button>
-      <button>Menu</button>
-      <button>Menu</button>
-      <button>Menu</button>
-    </MenuStyle>
-  );
+  return <StyledMenu />;
 }
-
+// Karina
+// Giselle
+// Winter
+// Ningning
 export default Menu;
