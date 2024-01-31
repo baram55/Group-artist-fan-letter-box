@@ -1,6 +1,7 @@
 import React from "react";
 import GlobalStyle from "./components/GlobalStyle";
 import Header from "./layout/Header";
+import Body from "./layout/Body";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <GlobalStyle />
       {/*NOTE - 이렇게 해도 전역 적용이 돼나요?*/}
       <Header />
+      <Body />
     </>
   );
 }

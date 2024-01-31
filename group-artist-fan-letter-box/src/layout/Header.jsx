@@ -3,6 +3,9 @@ import styled from "styled-components";
 import bannerImage from "../assets/banner.jpg";
 import Menu from "../components/Menu";
 import KarinaButton from "../components/KarinaButton";
+import WinterButton from "../components/WinterButton";
+import NingningButton from "../components/NingningButton";
+import GiselleButton from "../components/GiselleButton";
 
 const Banner = styled.div`
   display: flex;
@@ -23,10 +26,10 @@ function Header() {
       <Banner>
         <Title>에스파 팬레터 콜렉션</Title>
         <Menu>
-          <KarinaButton /> //NOTE - div 안에 넣었는데 안 들어감
           <KarinaButton />
-          <KarinaButton />
-          <KarinaButton />
+          <WinterButton />
+          <NingningButton />
+          <GiselleButton />
         </Menu>
       </Banner>
     </>

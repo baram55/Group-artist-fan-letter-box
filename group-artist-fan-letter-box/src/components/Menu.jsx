@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledMenu = styled.div`
+const Div = styled.div`
   display: flex;
   width: 500px;
   height: 100px;
-  padding: 50px;
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
@@ -14,11 +13,8 @@ const StyledMenu = styled.div`
   border-radius: 30px;
 `;
 
-function Menu() {
-  return <StyledMenu />;
+function Menu({ children }) {
+  //매개변수에 children 헷갈림
+  return <Div>{children}</Div>;
 }
-// Karina
-// Giselle
-// Winter
-// Ningning
 export default Menu;

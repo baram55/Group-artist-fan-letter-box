@@ -15,8 +15,8 @@ const StyledButton = styled.button`
   }
 `;
 
-function GiselleButton() {
-  return <StyledButton>지젤</StyledButton>;
+function WinterButton() {
+  return <StyledButton>윈터</StyledButton>;
 }
 
-export default GiselleButton;
+export default WinterButton;
