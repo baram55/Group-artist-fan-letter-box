@@ -2,11 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import DetailedCard from "../components/DetailedCard";
 
-const StyledDetail = styled.div`
-  display: flex;
-  flex-direction: rows;
-`;
-
 const StyledButton = styled.button`
   width: auto;
   height: auto;

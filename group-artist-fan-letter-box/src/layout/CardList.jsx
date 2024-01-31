@@ -13,10 +13,15 @@ const StyledCardList = styled.div`
   padding: 10px;
 `;
 
-function CardList() {
+function CardList(props) {
+  const member = props.member;
+  const comments = props.comments.filter((item) => item.member === member);
+
   return (
     <StyledCardList>
-      <Card />
+      {comments.map((item) => (
+        <Card comment={item} />
+      ))}
     </StyledCardList>
   );
 }

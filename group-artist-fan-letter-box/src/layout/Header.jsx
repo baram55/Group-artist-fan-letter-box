@@ -21,16 +21,16 @@ const Title = styled.h1`
   font-size: 50px;
 `;
 
-function Header() {
+function Header(props) {
   return (
     <>
       <Banner>
         <Title>에스파 팬레터 콜렉션</Title>
         <Menu>
-          <KarinaButton />
-          <WinterButton />
-          <NingningButton />
-          <GiselleButton />
+          <KarinaButton selectMember={props.selectMember} />
+          <WinterButton selectMember={props.selectMember} />
+          <NingningButton selectMember={props.selectMember} />
+          <GiselleButton selectMember={props.selectMember} />
         </Menu>
       </Banner>
     </>

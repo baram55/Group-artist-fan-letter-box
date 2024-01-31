@@ -30,20 +30,20 @@ const StyledContent = styled.p`
   border-radius: 5px;
 `;
 
-function Card() {
+function Card(props) {
+  const { id, nickName, content, date } = props.comment;
+  console.log("카드", props.comment);
   return (
-    <StyledCard>
+    <StyledCard key={id}>
       <box>
         <StyledUserImg src={userImg} alt="이미지 없음" />
       </box>
       <box>
-        <p>Dr. Clint Christiansen</p>
+        <p>{nickName}</p>
         <br />
-        <p>23. 11. 03. 오전 11:07:09</p>
+        <p>{date}</p>
         <br />
-        <StyledContent>
-          카리나 멋져요 Vitae recusandae tenetur debiti
-        </StyledContent>
+        <StyledContent>{content}</StyledContent>
       </box>
     </StyledCard>
   );

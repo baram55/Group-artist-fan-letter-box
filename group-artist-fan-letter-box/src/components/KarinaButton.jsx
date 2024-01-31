@@ -15,8 +15,16 @@ const StyledButton = styled.button`
   }
 `;
 
-function KarinaButton() {
-  return <StyledButton>카리나</StyledButton>;
+function KarinaButton(props) {
+  return (
+    <StyledButton
+      onClick={() => {
+        props.selectMember("karina");
+      }}
+    >
+      카리나
+    </StyledButton>
+  );
 }
 
 export default KarinaButton;

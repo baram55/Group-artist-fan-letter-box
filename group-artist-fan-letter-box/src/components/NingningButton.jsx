@@ -15,8 +15,16 @@ const StyledButton = styled.button`
   }
 `;
 
-function NingningButton() {
-  return <StyledButton>닝닝</StyledButton>;
+function NingningButton(props) {
+  return (
+    <StyledButton
+      onClick={() => {
+        props.selectMember("ningning");
+      }}
+    >
+      닝닝
+    </StyledButton>
+  );
 }
 
 export default NingningButton;

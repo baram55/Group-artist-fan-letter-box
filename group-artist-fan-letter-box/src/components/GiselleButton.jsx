@@ -15,8 +15,16 @@ const StyledButton = styled.button`
   }
 `;
 
-function GiselleButton() {
-  return <StyledButton>지젤</StyledButton>;
+function GiselleButton(props) {
+  return (
+    <StyledButton
+      onClick={() => {
+        props.selectMember("giselle");
+      }}
+    >
+      지젤
+    </StyledButton>
+  );
 }
 
 export default GiselleButton;

@@ -15,8 +15,16 @@ const StyledButton = styled.button`
   }
 `;
 
-function WinterButton() {
-  return <StyledButton>윈터</StyledButton>;
+function WinterButton(props) {
+  return (
+    <StyledButton
+      onClick={() => {
+        props.selectMember("winter");
+      }}
+    >
+      윈터
+    </StyledButton>
+  );
 }
 
 export default WinterButton;
