@@ -68,30 +68,30 @@ const getFormattedDate = () => {
   return `${year}. ${month}. ${day}. ${amPm} ${hour}:${minute}:${second}`;
 };
 
-const submitHandler = (event) => {
+const submitHandler = (event, addComment) => {
   event.preventDefault();
   const nickName = event.target.nickName.value;
   const content = event.target.content.value;
   const member = event.target.member.value;
-  const id = uuidv4(); // 아이디 메서드 이용
+  const id = uuidv4();
   const date = getFormattedDate();
+  let comment = "";
 
   if (nickName === "" || content === "") {
     alert("닉네임과 내용은 필수 입력값입니다.");
     return;
   }
 
-  console.log(nickName, content, member, id, date);
+  comment = { nickName, content, member, id, date };
+  addComment((prev) => [comment, ...prev]);
 };
 
 function InputForm(props) {
-  const addComment = props.addComment;
-  const nickName = "";
-  const content = "";
-  const member = "";
-  const date = "";
   return (
-    <StyledInputForm method="post" onSubmit={submitHandler}>
+    <StyledInputForm
+      method="post"
+      onSubmit={(event) => submitHandler(event, props.addComment)}
+    >
       <box>
         닉네임 :{" "}
         <StyledInputNickName
