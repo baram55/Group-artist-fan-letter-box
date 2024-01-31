@@ -16,6 +16,13 @@ const StyledInputNickName = styled.input`
   margin: 10px;
   width: 80%;
 `;
+
+const StyledContentInfo = styled.div`
+  display: flex;
+  flex-direction: rows;
+  align-items: center;
+`;
+
 const StyledTextareaContent = styled.textarea`
   margin: 10px;
   width: 80%;
@@ -30,10 +37,11 @@ const StyledSelect = styled.select`
 
 const StyledInputSubmit = styled.input`
   width: auto;
-  height: 50px;
+  height: auto;
   background-color: black;
   color: white;
   border: none;
+  padding: 5px;
   margin: 10px 0px 10px auto;
   float: right;
 
@@ -45,7 +53,7 @@ const StyledInputSubmit = styled.input`
 
 function InputForm() {
   return (
-    <StyledInputForm>
+    <StyledInputForm method="post">
       <box>
         닉네임 :{" "}
         <StyledInputNickName
@@ -55,8 +63,8 @@ function InputForm() {
           maxLength="20"
         />
       </box>
-      <box>
-        내용 :{" "}
+      <StyledContentInfo>
+        <p>내용 : </p>
         <StyledTextareaContent
           type="text"
           name="content"
@@ -64,7 +72,7 @@ function InputForm() {
           maxLength="100"
           rows="5"
         />
-      </box>
+      </StyledContentInfo>
       <box>
         누구에게 보내실 건가요?
         <StyledSelect>
