@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 
 const StyledInputForm = styled.form`
   display: flex;
@@ -51,9 +52,41 @@ const StyledInputSubmit = styled.input`
   }
 `;
 
-function InputForm() {
+const getFormattedDate = () => {
+  const date = new Date();
+  const year = date.getFullYear().toString().substring(2, 4);
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+
+  const day = date.getDate();
+
+  const result = `${year}. ${month}. ${day}. `;
+  console.log(result);
+};
+
+const submitHandler = (event) => {
+  event.preventDefault();
+  const nickName = event.target.nickName.value;
+  const content = event.target.content.value;
+  const member = event.target.member.value;
+  const id = uuidv4(); // 아이디 메서드 이용
+  const date = getFormattedDate();
+
+  if (nickName === "" || content === "") {
+    alert("닉네임과 내용은 필수 입력값입니다.");
+    return;
+  }
+
+  console.log(nickName, content, member, id, date);
+};
+
+function InputForm(props) {
+  const addComment = props.addComment;
+  const nickName = "";
+  const content = "";
+  const member = "";
+  const date = "";
   return (
-    <StyledInputForm method="post">
+    <StyledInputForm method="post" onSubmit={submitHandler}>
       <box>
         닉네임 :{" "}
         <StyledInputNickName
@@ -75,7 +108,7 @@ function InputForm() {
       </StyledContentInfo>
       <box>
         누구에게 보내실 건가요?
-        <StyledSelect>
+        <StyledSelect name="member">
           <option value="karina" selected>
             카리나
           </option>

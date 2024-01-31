@@ -41,7 +41,7 @@ function Home() {
     <>
       <Header selectMember={setMember} />
       <Body>
-        <InputForm />
+        <InputForm addComment={setComments} />
         <CardList member={member} comments={comments} />
       </Body>
     </>
