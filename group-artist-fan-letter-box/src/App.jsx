@@ -1,7 +1,7 @@
 import React from "react";
 import GlobalStyle from "./components/GlobalStyle";
 import Header from "./layout/Header";
-import Body from "./layout/Body";
+import Body from "./layout/InputForm";
 
 function App() {
   return (

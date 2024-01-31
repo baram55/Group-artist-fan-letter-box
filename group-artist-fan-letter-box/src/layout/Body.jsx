@@ -1,13 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+import InputForm from "./InputForm";
 
-const StyledBody = styled.section`
-  display: flex;
-  direction: column;
-`;
-
-function Body({ children }) {
-  return <StyledBody>{children}</StyledBody>;
+function Body() {
+  return (
+    <>
+      <InputForm />
+    </>
+  );
 }
 
 export default Body;
