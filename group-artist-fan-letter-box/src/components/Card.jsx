@@ -9,6 +9,7 @@ const StyledCard = styled.div`
   border: 1px solid white;
   border-radius: 10px;
   color: white;
+  margin: 10px;
   padding: 5px;
   line-height: 20px;
   &:hover {
@@ -19,32 +20,42 @@ const StyledCard = styled.div`
 const StyledUserImg = styled.img`
   width: 50px;
   height: 70%;
+  margin: 10px;
   background-color: black;
 `;
 
+const StyledInfoBox = styled.div`
+  width: 100%;
+  height: auto;
+`;
+
 const StyledContent = styled.p`
-  width: auto;
+  width: 80%;
   height: auto;
   padding: 5px;
   background-color: gray;
   border-radius: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 function Card(props) {
   const { id, nickName, content, date } = props.comment;
   console.log("카드", props.comment);
+  console.log(typeof content);
   return (
     <StyledCard key={id}>
       <box>
         <StyledUserImg src={userImg} alt="이미지 없음" />
       </box>
-      <box>
+      <StyledInfoBox>
         <p>{nickName}</p>
         <br />
         <p>{date}</p>
         <br />
         <StyledContent>{content}</StyledContent>
-      </box>
+      </StyledInfoBox>
     </StyledCard>
   );
 }
