@@ -1,12 +1,7 @@
 import React from "react";
-import InputForm from "./InputForm";
 
-function Body() {
-  return (
-    <>
-      <InputForm />
-    </>
-  );
+function Body({ children }) {
+  return <body>{children}</body>;
 }
 
 export default Body;

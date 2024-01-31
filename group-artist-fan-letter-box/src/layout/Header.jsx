@@ -8,6 +8,7 @@ import NingningButton from "../components/NingningButton";
 import GiselleButton from "../components/GiselleButton";
 
 const Banner = styled.div`
+  // img로 변경해보기
   display: flex;
   height: 100px;
   flex-direction: column;

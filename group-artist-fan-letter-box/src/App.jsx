@@ -1,15 +1,19 @@
 import React from "react";
 import GlobalStyle from "./components/GlobalStyle";
 import Header from "./layout/Header";
-import Body from "./layout/InputForm";
+import Body from "./layout/Body";
+import InputForm from "./components/InputForm";
+import CardList from "./layout/CardList";
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      {/*NOTE - 이렇게 해도 전역 적용이 돼나요?*/}
       <Header />
-      <Body />
+      <Body>
+        <InputForm />
+        <CardList />
+      </Body>
     </>
   );
 }
