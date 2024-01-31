@@ -84,6 +84,7 @@ const submitHandler = (event, addComment) => {
 
   comment = { nickName, content, member, id, date };
   addComment((prev) => [comment, ...prev]);
+  event.target.reset();
 };
 
 function InputForm(props) {
