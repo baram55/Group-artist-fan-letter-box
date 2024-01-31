@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import DetailedCard from "../components/DetailedCard";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const StyledButton = styled.button`
   width: auto;
@@ -14,13 +15,23 @@ const StyledButton = styled.button`
 `;
 
 function Detail() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const comment = location.state.comment;
+
   return (
     <>
       <box>
-        <StyledButton>홈으로</StyledButton>
+        <StyledButton
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          홈으로
+        </StyledButton>
       </box>
       <box>
-        <DetailedCard />
+        <DetailedCard comment={comment} />
       </box>
     </>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import userImg from "../assets/user.svg";
 
@@ -38,7 +38,7 @@ const StyledToMember = styled.p`
   margin: 10px;
 `;
 
-const StyledContent = styled.div`
+const StyledContent = styled.textarea`
   background-color: black;
   color: white;
   font-size: 20px;
@@ -46,6 +46,8 @@ const StyledContent = styled.div`
   padding: 20px;
   height: 300px;
   width: auto;
+  border: none;
+  resize: none;
 `;
 
 const StyledEdit = styled.button`
@@ -71,22 +73,31 @@ const StyledDelete = styled.button`
   padding: 5px;
 `;
 
-function DetailedCard() {
+function DetailedCard(props) {
+  const { date, nickName, member, content } = props.comment;
+  const contentRef = useRef("");
+
+  const editHandler = () => {
+    contentRef.current.disabled = false;
+  };
+
   return (
     <StyledDetailedCard>
       <box>
         <StyledUserInfo>
           <StyledUserImg src={userImg} alt="이미지 없음" />
-          <StyledNickName>유저 이름</StyledNickName>
+          <StyledNickName>{nickName}</StyledNickName>
 
-          <p>날짜</p>
+          <p>{date}</p>
         </StyledUserInfo>
       </box>
-      <StyledToMember>TO : ~</StyledToMember>
-      <StyledContent>내용입니다.</StyledContent>
+      <StyledToMember>TO : {member}</StyledToMember>
+      <StyledContent maxLength={100} disabled ref={contentRef}>
+        {content}
+      </StyledContent>
       <box>
         <StyledDelete>삭제</StyledDelete>
-        <StyledEdit>수정</StyledEdit>
+        <StyledEdit onClick={editHandler}>수정</StyledEdit>
       </box>
     </StyledDetailedCard>
   );

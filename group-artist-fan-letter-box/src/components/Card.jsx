@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import userImg from "../assets/user.svg";
+import { useNavigate } from "react-router-dom";
 
 const StyledCard = styled.div`
   display: flex;
@@ -42,10 +43,15 @@ const StyledContent = styled.p`
 
 function Card(props) {
   const { id, nickName, content, date } = props.comment;
-  console.log("카드", props.comment);
-  console.log(typeof content);
+  const navigate = useNavigate();
+
   return (
-    <StyledCard key={id}>
+    <StyledCard
+      key={id}
+      onClick={() => {
+        navigate(`detail/${id}`, { state: { comment: props.comment } });
+      }}
+    >
       <box>
         <StyledUserImg src={userImg} alt="이미지 없음" />
       </box>
