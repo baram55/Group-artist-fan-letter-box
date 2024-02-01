@@ -20,7 +20,7 @@ function CardList(props) {
   return (
     <StyledCardList>
       {comments.map((item) => (
-        <Card comment={item} />
+        <Card comment={item} setComments={props.setComments} />
       ))}
     </StyledCardList>
   );

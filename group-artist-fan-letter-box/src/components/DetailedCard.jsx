@@ -60,6 +60,10 @@ const StyledEdit = styled.button`
   margin: 10px;
   float: right;
   padding: 5px;
+  &:hover {
+    background-color: yellow;
+    color: black;
+  }
 `;
 const StyledDelete = styled.button`
   width: auto;
@@ -71,14 +75,25 @@ const StyledDelete = styled.button`
   margin: 10px;
   float: right;
   padding: 5px;
+  &:hover {
+    background-color: yellow;
+    color: black;
+  }
 `;
 
 function DetailedCard(props) {
   const { date, nickName, member, content } = props.comment;
+  const setComments = props.setComments;
   const contentRef = useRef("");
+  const prevContentRef = useRef("");
 
   const editHandler = () => {
     contentRef.current.disabled = false;
+    prevContentRef.current = contentRef.current.value;
+  };
+
+  const deleteHandler = () => {
+    alert("delete");
   };
 
   return (
@@ -96,7 +111,7 @@ function DetailedCard(props) {
         {content}
       </StyledContent>
       <box>
-        <StyledDelete>삭제</StyledDelete>
+        <StyledDelete onClick={deleteHandler}>삭제</StyledDelete>
         <StyledEdit onClick={editHandler}>수정</StyledEdit>
       </box>
     </StyledDetailedCard>

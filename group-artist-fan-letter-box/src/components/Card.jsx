@@ -49,7 +49,9 @@ function Card(props) {
     <StyledCard
       key={id}
       onClick={() => {
-        navigate(`detail/${id}`, { state: { comment: props.comment } });
+        navigate(`detail/${id}`, {
+          state: { comment: props.comment },
+        });
       }}
     >
       <box>

@@ -18,6 +18,7 @@ function Detail() {
   const navigate = useNavigate();
   const location = useLocation();
   const comment = location.state.comment;
+  const setComments = location.state.setComments;
 
   return (
     <>
@@ -31,7 +32,7 @@ function Detail() {
         </StyledButton>
       </box>
       <box>
-        <DetailedCard comment={comment} />
+        <DetailedCard comment={comment} setComments={setComments} />
       </box>
     </>
   );
