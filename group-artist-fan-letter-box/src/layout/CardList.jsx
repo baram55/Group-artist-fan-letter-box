@@ -1,4 +1,3 @@
-import React, { useRef } from "react";
 import styled from "styled-components";
 import Card from "components/Card";
 
@@ -27,13 +26,11 @@ const StyledNoCard = styled.div`
 function CardList(props) {
   const member = props.member;
   const comments = props.comments.filter((item) => item.member === member);
-  const cardCount = useRef(0);
 
   return (
     <StyledCardList>
       {comments.length > 0 ? (
         comments.map((item) => {
-          cardCount.current++;
           return <Card comment={item} setComments={props.setComments} />;
         })
       ) : (
