@@ -7,7 +7,7 @@ import CardList from "../layout/CardList";
 function Home(props) {
   return (
     <>
-      <Header selectMember={props.setMember} />
+      <Header member={props.member} setMember={props.setMember} />
       <Body>
         <InputForm addComment={props.setComments} />
         <CardList

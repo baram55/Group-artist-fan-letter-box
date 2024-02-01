@@ -120,12 +120,12 @@ function InputForm(props) {
       <box>
         누구에게 보내실 건가요?
         <StyledSelect name="member">
-          <option value="karina" selected>
+          <option value="카리나" selected>
             카리나
           </option>
-          <option value="winter">윈터</option>
-          <option value="ningning">닝닝</option>
-          <option value="giselle">지젤</option>
+          <option value="윈터">윈터</option>
+          <option value="닝닝">닝닝</option>
+          <option value="지젤">지젤</option>
         </StyledSelect>
       </box>
       <box>

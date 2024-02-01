@@ -2,13 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import bannerImage from "../assets/banner.jpg";
 import Menu from "../components/Menu";
-import KarinaButton from "../components/KarinaButton";
-import WinterButton from "../components/WinterButton";
-import NingningButton from "../components/NingningButton";
-import GiselleButton from "../components/GiselleButton";
+import MenuButton from "../components/MenuButton";
 
 const Banner = styled.div`
-  // img로 변경해보기
   display: flex;
   height: 100px;
   flex-direction: column;
@@ -27,10 +23,26 @@ function Header(props) {
       <Banner>
         <Title>에스파 팬레터 콜렉션</Title>
         <Menu>
-          <KarinaButton selectMember={props.selectMember} />
-          <WinterButton selectMember={props.selectMember} />
-          <NingningButton selectMember={props.selectMember} />
-          <GiselleButton selectMember={props.selectMember} />
+          <MenuButton
+            name="카리나"
+            member={props.member}
+            setMember={props.setMember}
+          />
+          <MenuButton
+            name="윈터"
+            member={props.member}
+            setMember={props.setMember}
+          />
+          <MenuButton
+            name="닝닝"
+            member={props.member}
+            setMember={props.setMember}
+          />
+          <MenuButton
+            name="지젤"
+            member={props.member}
+            setMember={props.setMember}
+          />
         </Menu>
       </Banner>
     </>
