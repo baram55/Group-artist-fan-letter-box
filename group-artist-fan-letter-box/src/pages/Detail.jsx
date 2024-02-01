@@ -31,7 +31,7 @@ function Detail(props) {
         </StyledButton>
       </box>
       <box>
-        <DetailedCard comment={comment} setComments={props.setComments} />
+        <DetailedCard comment={comment} />
       </box>
     </>
   );

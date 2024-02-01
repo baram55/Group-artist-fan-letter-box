@@ -4,17 +4,13 @@ import Body from "layout/Body";
 import InputForm from "components/InputForm";
 import CardList from "layout/CardList";
 
-function Home(props) {
+function Home() {
   return (
     <>
-      <Header member={props.member} setMember={props.setMember} />
+      <Header />
       <Body>
-        <InputForm addComment={props.setComments} />
-        <CardList
-          member={props.member}
-          comments={props.comments}
-          setComments={props.setComments}
-        />
+        <InputForm />
+        <CardList />
       </Body>
     </>
   );

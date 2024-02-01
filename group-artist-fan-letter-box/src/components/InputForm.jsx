@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
+import { CommentsContext } from "context/CommentsContext";
 
 const StyledInputForm = styled.form`
   display: flex;
@@ -94,10 +95,11 @@ const submitHandler = (event, addComment) => {
 };
 
 function InputForm(props) {
+  const setComments = useContext(CommentsContext).setComments;
   return (
     <StyledInputForm
       method="post"
-      onSubmit={(event) => submitHandler(event, props.addComment)}
+      onSubmit={(event) => submitHandler(event, setComments)}
     >
       <box>
         닉네임 :{" "}

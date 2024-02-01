@@ -1,6 +1,8 @@
-import React, { useRef } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Card from "components/Card";
+import { MemberContext } from "context/MemberContext";
+import { CommentsContext } from "context/CommentsContext";
 
 const StyledCardList = styled.div`
   display: flex;
@@ -24,17 +26,17 @@ const StyledNoCard = styled.div`
   padding: 10px;
 `;
 
-function CardList(props) {
-  const member = props.member;
-  const comments = props.comments.filter((item) => item.member === member);
-  const cardCount = useRef(0);
+function CardList() {
+  const member = useContext(MemberContext).member;
+  const comments = useContext(CommentsContext).comments.filter(
+    (item) => item.member === member
+  );
 
   return (
     <StyledCardList>
       {comments.length > 0 ? (
         comments.map((item) => {
-          cardCount.current++;
-          return <Card comment={item} setComments={props.setComments} />;
+          return <Card comment={item} />;
         })
       ) : (
         <StyledNoCard>

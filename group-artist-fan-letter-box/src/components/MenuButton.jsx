@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import styled from "styled-components";
+import { MemberContext } from "context/MemberContext";
 
 const StyledButton = styled.button`
   width: 100px;
@@ -29,7 +30,7 @@ const StyledButton = styled.button`
 
 function MenuButton(props) {
   const name = props.name;
-  const setMember = props.setMember;
+  const setMember = useContext(MemberContext).setMember; // props.setMember;
   const buttonRef = useRef("");
 
   return (

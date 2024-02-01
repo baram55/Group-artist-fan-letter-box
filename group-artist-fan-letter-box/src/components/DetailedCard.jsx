@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import styled from "styled-components";
 import userImg from "assets/user.svg";
 import { useNavigate } from "react-router-dom";
+import { CommentsContext } from "context/CommentsContext";
 
 const StyledDetailedCard = styled.div`
   display: flex;
@@ -120,8 +121,8 @@ const StyledEditDone = styled.button`
 `;
 
 function DetailedCard(props) {
+  const setComments = useContext(CommentsContext).setComments;
   const { id, date, nickName, member, content } = props.comment;
-  const setComments = props.setComments;
   const contentRef = useRef("");
   const prevContentRef = useRef("");
   const deleteButtonRef = useRef("");
