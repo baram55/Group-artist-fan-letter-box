@@ -14,7 +14,7 @@ const StyledButton = styled.button`
   margin: 10px;
 `;
 
-function Detail(props) {
+function Detail() {
   const navigate = useNavigate();
   const location = useLocation();
   const comment = location.state.comment;

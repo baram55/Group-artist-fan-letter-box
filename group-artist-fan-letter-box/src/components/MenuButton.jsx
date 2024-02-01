@@ -30,7 +30,7 @@ const StyledButton = styled.button`
 
 function MenuButton(props) {
   const name = props.name;
-  const setMember = useContext(MemberContext).setMember; // props.setMember;
+  const setMember = useContext(MemberContext).setMember;
   const buttonRef = useRef("");
 
   return (
@@ -42,7 +42,7 @@ function MenuButton(props) {
       name={props.name}
       member={props.member}
     >
-      {props.name}
+      name
     </StyledButton>
   );
 }

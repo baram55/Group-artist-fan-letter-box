@@ -94,7 +94,7 @@ const submitHandler = (event, addComment) => {
   event.target.reset();
 };
 
-function InputForm(props) {
+function InputForm() {
   const setComments = useContext(CommentsContext).setComments;
   return (
     <StyledInputForm
