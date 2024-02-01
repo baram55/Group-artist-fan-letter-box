@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import Card from "components/Card";
 
@@ -13,15 +13,35 @@ const StyledCardList = styled.div`
   padding: 10px;
 `;
 
+const StyledNoCard = styled.div`
+  background-color: black;
+  border-radius: 10px;
+  line-height: 20px;
+  color: white;
+  width: 490px;
+  height: auto;
+  margin: 10px auto 10px auto;
+  padding: 10px;
+`;
+
 function CardList(props) {
   const member = props.member;
   const comments = props.comments.filter((item) => item.member === member);
+  const cardCount = useRef(0);
 
   return (
     <StyledCardList>
-      {comments.map((item) => (
-        <Card comment={item} setComments={props.setComments} />
-      ))}
+      {comments.length > 0 ? (
+        comments.map((item) => {
+          cardCount.current++;
+          return <Card comment={item} setComments={props.setComments} />;
+        })
+      ) : (
+        <StyledNoCard>
+          {member}에게 남겨진 팬레터가 없습니다. 첫 번째 팬레터의 주인공이
+          되주세요!
+        </StyledNoCard>
+      )}
     </StyledCardList>
   );
 }

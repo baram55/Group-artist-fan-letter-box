@@ -28,6 +28,7 @@ const StyledTextareaContent = styled.textarea`
   margin: 10px;
   width: 80%;
   height: 70px;
+  resize: none;
 `;
 
 const StyledSelect = styled.select`
