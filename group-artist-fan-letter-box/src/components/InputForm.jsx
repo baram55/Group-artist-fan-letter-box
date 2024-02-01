@@ -27,7 +27,7 @@ const StyledContentInfo = styled.div`
 const StyledTextareaContent = styled.textarea`
   margin: 10px;
   width: 80%;
-  height: 50px;
+  height: 70px;
 `;
 
 const StyledSelect = styled.select`
@@ -45,10 +45,15 @@ const StyledInputSubmit = styled.input`
   padding: 5px;
   margin: 10px 0px 10px auto;
   float: right;
-
   &:hover {
     background-color: yellow;
     color: black;
+  }
+  &:active {
+    transform: scale(1.05);
+  }
+  &:visited {
+    transform: scale(1);
   }
 `;
 

@@ -42,7 +42,7 @@ const StyledToMember = styled.p`
 const StyledContent = styled.textarea`
   background-color: black;
   color: white;
-  font-size: 20px;
+  font-size: 30px;
   border-radius: 10px;
   padding: 20px;
   height: 300px;
@@ -66,6 +66,12 @@ const StyledEdit = styled.button`
     background-color: yellow;
     color: black;
   }
+  &:active {
+    transform: scale(1.05);
+  }
+  &:visited {
+    transform: scale(1);
+  }
 `;
 const StyledDelete = styled.button`
   display: inline;
@@ -82,7 +88,14 @@ const StyledDelete = styled.button`
     background-color: yellow;
     color: black;
   }
+  &:active {
+    transform: scale(1.05);
+  }
+  &:visited {
+    transform: scale(1);
+  }
 `;
+
 const StyledEditDone = styled.button`
   display: none;
   width: auto;
@@ -97,6 +110,12 @@ const StyledEditDone = styled.button`
   &:hover {
     background-color: yellow;
     color: black;
+  }
+  &:active {
+    transform: scale(1.05);
+  }
+  &:visited {
+    transform: scale(1);
   }
 `;
 

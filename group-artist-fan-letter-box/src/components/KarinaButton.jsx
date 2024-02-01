@@ -13,6 +13,12 @@ const StyledButton = styled.button`
     background-color: yellow;
     color: black;
   }
+  &:active {
+    transform: scale(1.05);
+  }
+  &:visited {
+    transform: scale(1);
+  }
 `;
 
 function KarinaButton(props) {
