@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import bannerImage from "../assets/banner.jpg";
-import Menu from "../components/Menu";
-import MenuButton from "../components/MenuButton";
+import bannerImage from "assets/banner.jpg";
+import Menu from "components/Menu";
+import MenuButton from "components/MenuButton";
 
 const Banner = styled.div`
   display: flex;

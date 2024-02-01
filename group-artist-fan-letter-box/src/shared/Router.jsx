@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "../pages/Home";
-import Detail from "../pages/Detail";
-import commentJson from "../fakeData.json";
+import Home from "pages/Home";
+import Detail from "pages/Detail";
+import commentJson from "fakeData.json";
 
 function Router() {
   const initialData = commentJson;

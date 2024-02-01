@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import DetailedCard from "../components/DetailedCard";
+import DetailedCard from "components/DetailedCard";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const StyledButton = styled.button`

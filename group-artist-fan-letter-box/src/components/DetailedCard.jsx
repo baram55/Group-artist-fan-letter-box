@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
-import userImg from "../assets/user.svg";
+import userImg from "assets/user.svg";
 import { useNavigate } from "react-router-dom";
 
 const StyledDetailedCard = styled.div`
