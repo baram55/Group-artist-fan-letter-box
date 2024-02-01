@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../layout/Header";
 import Body from "../layout/Body";
 import InputForm from "../components/InputForm";

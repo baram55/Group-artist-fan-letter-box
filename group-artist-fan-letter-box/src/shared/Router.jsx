@@ -50,7 +50,10 @@ function Router() {
             />
           }
         />
-        <Route path="detail/:id" element={<Detail />} />
+        <Route
+          path="detail/:id"
+          element={<Detail setComments={setComments} />}
+        />
       </Routes>
     </BrowserRouter>
   );
