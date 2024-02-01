@@ -42,7 +42,7 @@ function MenuButton(props) {
       name={props.name}
       member={props.member}
     >
-      name
+      {name}
     </StyledButton>
   );
 }
