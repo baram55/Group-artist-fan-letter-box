@@ -1,6 +1,7 @@
-import React, { useContext, useRef } from "react";
+import React, { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { setMember } from "../redux/modules/selectedMember";
 import styled from "styled-components";
-import { MemberContext } from "context/MemberContext";
 
 const StyledButton = styled.button`
   width: 100px;
@@ -30,13 +31,16 @@ const StyledButton = styled.button`
 
 function MenuButton(props) {
   const name = props.name;
-  const setMember = useContext(MemberContext).setMember;
+  const dispatch = useDispatch();
+  const selectMember = () => {
+    dispatch(setMember(name));
+  };
   const buttonRef = useRef("");
 
   return (
     <StyledButton
       onClick={() => {
-        setMember(name);
+        selectMember(name);
       }}
       ref={buttonRef}
       name={props.name}

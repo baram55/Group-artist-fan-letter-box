@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
-import { CommentsContext } from "context/CommentsContext";
+import { useDispatch, useSelector } from "react-redux";
+import { setComments } from "../redux/modules/comments";
 
 const StyledInputForm = styled.form`
   display: flex;
@@ -75,7 +75,7 @@ const getFormattedDate = () => {
   return `${year}. ${month}. ${day}. ${amPm} ${hour}:${minute}:${second}`;
 };
 
-const submitHandler = (event, addComment) => {
+const submitHandler = (event, prevComments, addComment) => {
   event.preventDefault();
   const nickName = event.target.nickName.value;
   const content = event.target.content.value;
@@ -90,16 +90,21 @@ const submitHandler = (event, addComment) => {
   }
 
   comment = { nickName, content, member, id, date };
-  addComment((prev) => [comment, ...prev]);
+  addComment([comment, ...prevComments]);
   event.target.reset();
 };
 
 function InputForm() {
-  const setComments = useContext(CommentsContext).setComments;
+  const dispatch = useDispatch();
+  const prevComments = useSelector((state) => state.comments.comments);
+  const addComment = (newComments) => {
+    dispatch(setComments(newComments));
+  };
+
   return (
     <StyledInputForm
       method="post"
-      onSubmit={(event) => submitHandler(event, setComments)}
+      onSubmit={(event) => submitHandler(event, prevComments, addComment)}
     >
       <box>
         닉네임 :{" "}

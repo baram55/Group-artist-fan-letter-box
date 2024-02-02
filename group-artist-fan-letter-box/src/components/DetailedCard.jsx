@@ -1,8 +1,9 @@
-import React, { useContext, useRef } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import userImg from "assets/user.svg";
 import { useNavigate } from "react-router-dom";
-import { CommentsContext } from "context/CommentsContext";
+import { useDispatch, useSelector } from "react-redux";
+import { setComments } from "../redux/modules/comments";
 
 const StyledDetailedCard = styled.div`
   display: flex;
@@ -121,7 +122,11 @@ const StyledEditDone = styled.button`
 `;
 
 function DetailedCard(props) {
-  const setComments = useContext(CommentsContext).setComments;
+  const dispatch = useDispatch();
+  const editComments = (newComments) => {
+    dispatch(setComments(newComments));
+  };
+  const prevComments = useSelector((state) => state.comments.comments);
   const { id, date, nickName, member, content } = props.comment;
   const contentRef = useRef("");
   const prevContentRef = useRef("");
@@ -157,9 +162,7 @@ function DetailedCard(props) {
   const deleteHandler = () => {
     const deleteFlag = window.confirm("정말로 삭제하시겠습니까?");
     if (deleteFlag) {
-      setComments((prevComments) =>
-        prevComments.filter((item) => item.id !== id)
-      );
+      editComments(prevComments.filter((item) => item.id !== id));
       navigate("/");
     } else {
       return;
@@ -173,7 +176,17 @@ function DetailedCard(props) {
       const changeFlag = window.confirm("이대로 수정하시겠습니까?");
 
       if (changeFlag) {
-        setComments((prevComments) =>
+        // setComments((prevComments) =>
+        //   prevComments.map((item) => {
+        //     if (item.id === id) {
+        //       item.content = contentRef.current.value;
+        //       item.date = getFormattedDate();
+        //     }
+        //     return item;
+        //   })
+        // );
+        console.log(prevComments);
+        editComments(
           prevComments.map((item) => {
             if (item.id === id) {
               item.content = contentRef.current.value;

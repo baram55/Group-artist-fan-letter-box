@@ -1,8 +1,6 @@
-import React, { useContext } from "react";
 import styled from "styled-components";
 import Card from "components/Card";
-import { MemberContext } from "context/MemberContext";
-import { CommentsContext } from "context/CommentsContext";
+import { useSelector } from "react-redux";
 
 const StyledCardList = styled.div`
   display: flex;
@@ -27,8 +25,8 @@ const StyledNoCard = styled.div`
 `;
 
 function CardList() {
-  const member = useContext(MemberContext).member;
-  const comments = useContext(CommentsContext).comments.filter(
+  const member = useSelector((state) => state.selectedMember.member); //useContext(MemberContext).member;
+  const comments = useSelector((state) => state.comments.comments).filter(
     (item) => item.member === member
   );
 
