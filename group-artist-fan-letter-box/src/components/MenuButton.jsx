@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { setMember } from "../redux/modules/selectedMember";
+import { setMember } from "store/modules/selectedMember";
 import styled from "styled-components";
 
 const StyledButton = styled.button`

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
-import { setComments } from "../redux/modules/comments";
+import { setComments } from "store/modules/comments";
 
 const StyledInputForm = styled.form`
   display: flex;

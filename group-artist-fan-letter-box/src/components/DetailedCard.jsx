@@ -3,7 +3,7 @@ import styled from "styled-components";
 import userImg from "assets/user.svg";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setComments } from "../redux/modules/comments";
+import { setComments } from "store/modules/comments";
 
 const StyledDetailedCard = styled.div`
   display: flex;
@@ -75,6 +75,7 @@ const StyledEdit = styled.button`
     transform: scale(1);
   }
 `;
+
 const StyledDelete = styled.button`
   display: inline;
   width: auto;
@@ -176,16 +177,6 @@ function DetailedCard(props) {
       const changeFlag = window.confirm("이대로 수정하시겠습니까?");
 
       if (changeFlag) {
-        // setComments((prevComments) =>
-        //   prevComments.map((item) => {
-        //     if (item.id === id) {
-        //       item.content = contentRef.current.value;
-        //       item.date = getFormattedDate();
-        //     }
-        //     return item;
-        //   })
-        // );
-        console.log(prevComments);
         editComments(
           prevComments.map((item) => {
             if (item.id === id) {
