@@ -18,6 +18,7 @@ function DetailedCard({ comment }) {
   const prevComment = useRef("");
 
   const editHandler = (event) => {
+    {//NOTE - 이렇게 하는게 맞나요? }
     const editButton = event.target.edit;
     const deleteButton = event.target.delete;
     const editDoneButton = event.target.editDone;
@@ -43,8 +44,8 @@ function DetailedCard({ comment }) {
   };
 
   const editDoneHandler = (event) => {
-    const currentContentTextArea = event.target.content.value;
-    if (currentContentTextArea === prevComment.current.value) {
+    let currentContentTextArea = event.target.content.value;
+    if (currentContentTextArea === prevComment.current) {
       alert("수정된 부분이 없습니다.");
     } else {
       const changeFlag = window.confirm("이대로 수정하시겠습니까?");

@@ -1,40 +1,37 @@
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
-import { addComment } from "store/modules/comments";
+import { addComment as addReduxComment } from "store/modules/comments";
 import members from "data/members";
 import getFormattedDate from "util/getFormattedDate";
 
-const submitHandler = (event, plusComment) => {
-  event.preventDefault();
-  let { nickName, content, member, id, date } = {
-    nickName: event.target.nickName.value,
-    content: event.target.content.value,
-    member: event.target.member.value,
-    id: uuidv4(),
-    date: getFormattedDate(),
-  };
-
-  if (nickName === "" || content === "") {
-    alert("닉네임과 내용은 필수 입력값입니다.");
-    return;
-  }
-
-  plusComment({ nickName, content, member, id, date });
-  event.target.reset();
-};
-
 function InputForm() {
   const dispatch = useDispatch();
-  const plusComment = (newComments) => {
-    dispatch(addComment(newComments));
+  const addComment = (newComment) => {
+    dispatch(addReduxComment(newComment));
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    let { nickName, content, member, id, date } = {
+      nickName: event.target.nickName.value,
+      content: event.target.content.value,
+      member: event.target.member.value,
+      id: uuidv4(),
+      date: getFormattedDate(),
+    };
+
+    if (nickName === "" || content === "") {
+      alert("닉네임과 내용은 필수 입력값입니다.");
+      return;
+    }
+
+    addComment({ nickName, content, member, id, date });
+    event.target.reset();
   };
 
   return (
-    <StyledInputForm
-      method="post"
-      onSubmit={(event) => submitHandler(event, plusComment)}
-    >
+    <StyledInputForm method="post" onSubmit={(event) => submitHandler(event)}>
       <box>
         닉네임 :{" "}
         <StyledInputNickName
