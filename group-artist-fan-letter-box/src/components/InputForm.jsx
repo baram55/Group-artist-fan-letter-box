@@ -1,7 +1,76 @@
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
-import { useDispatch, useSelector } from "react-redux";
-import { setComments } from "store/modules/comments";
+import { useDispatch } from "react-redux";
+import { addComment } from "store/modules/comments";
+import members from "data/members";
+import getFormattedDate from "util/getFormattedDate";
+
+const submitHandler = (event, plusComment) => {
+  event.preventDefault();
+  let { nickName, content, member, id, date } = {
+    nickName: event.target.nickName.value,
+    content: event.target.content.value,
+    member: event.target.member.value,
+    id: uuidv4(),
+    date: getFormattedDate(),
+  };
+
+  if (nickName === "" || content === "") {
+    alert("닉네임과 내용은 필수 입력값입니다.");
+    return;
+  }
+
+  plusComment({ nickName, content, member, id, date });
+  event.target.reset();
+};
+
+function InputForm() {
+  const dispatch = useDispatch();
+  const plusComment = (newComments) => {
+    dispatch(addComment(newComments));
+  };
+
+  return (
+    <StyledInputForm
+      method="post"
+      onSubmit={(event) => submitHandler(event, plusComment)}
+    >
+      <box>
+        닉네임 :{" "}
+        <StyledInputNickName
+          type="text"
+          name="nickName"
+          placeholder="최대 20글자까지 작성할 수 있습니다."
+          maxLength="20"
+        />
+      </box>
+      <StyledContentInfo>
+        <p>내용 : </p>
+        <StyledTextareaContent
+          type="text"
+          name="content"
+          placeholder="최대 100자까지만 작성할 수 있습니다."
+          maxLength="100"
+          rows="5"
+        />
+      </StyledContentInfo>
+      <box>
+        누구에게 보내실 건가요?
+        <StyledSelect name="member">
+          <option value={members.KARINA} selected>
+            {members.KARINA}
+          </option>
+          <option value={members.WINTER}>{members.WINTER}</option>
+          <option value={members.NINGNING}>{members.NINGNING}</option>
+          <option value={members.GISELLE}>{members.GISELLE}</option>
+        </StyledSelect>
+      </box>
+      <box>
+        <StyledInputSubmit type="submit" value="펜레터 등록" />
+      </box>
+    </StyledInputForm>
+  );
+}
 
 const StyledInputForm = styled.form`
   display: flex;
@@ -58,89 +127,5 @@ const StyledInputSubmit = styled.input`
     transform: scale(1);
   }
 `;
-
-const getFormattedDate = () => {
-  const date = new Date();
-  const year = date.getFullYear().toString().substring(2, 4);
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const day = date.getDate().toString().padStart(2, "0");
-  const hour =
-    date.getHours() > 12
-      ? (date.getHours() - 12).toString().padStart(2, "0")
-      : date.getHours().toString().padStart(2, "0");
-  const amPm = date.getHours() < 12 ? "오전" : "오후";
-  const minute = date.getMinutes().toString().padStart(2, "0");
-  const second = date.getSeconds().toString().padStart(2, "0");
-
-  return `${year}. ${month}. ${day}. ${amPm} ${hour}:${minute}:${second}`;
-};
-
-const submitHandler = (event, prevComments, addComment) => {
-  event.preventDefault();
-  const nickName = event.target.nickName.value;
-  const content = event.target.content.value;
-  const member = event.target.member.value;
-  const id = uuidv4();
-  const date = getFormattedDate();
-  let comment = "";
-
-  if (nickName === "" || content === "") {
-    alert("닉네임과 내용은 필수 입력값입니다.");
-    return;
-  }
-
-  comment = { nickName, content, member, id, date };
-  addComment([comment, ...prevComments]);
-  event.target.reset();
-};
-
-function InputForm() {
-  const dispatch = useDispatch();
-  const prevComments = useSelector((state) => state.comments.comments);
-  const addComment = (newComments) => {
-    dispatch(setComments(newComments));
-  };
-
-  return (
-    <StyledInputForm
-      method="post"
-      onSubmit={(event) => submitHandler(event, prevComments, addComment)}
-    >
-      <box>
-        닉네임 :{" "}
-        <StyledInputNickName
-          type="text"
-          name="nickName"
-          placeholder="최대 20글자까지 작성할 수 있습니다."
-          maxLength="20"
-        />
-      </box>
-      <StyledContentInfo>
-        <p>내용 : </p>
-        <StyledTextareaContent
-          type="text"
-          name="content"
-          placeholder="최대 100자까지만 작성할 수 있습니다."
-          maxLength="100"
-          rows="5"
-        />
-      </StyledContentInfo>
-      <box>
-        누구에게 보내실 건가요?
-        <StyledSelect name="member">
-          <option value="카리나" selected>
-            카리나
-          </option>
-          <option value="윈터">윈터</option>
-          <option value="닝닝">닝닝</option>
-          <option value="지젤">지젤</option>
-        </StyledSelect>
-      </box>
-      <box>
-        <StyledInputSubmit type="submit" value="펜레터 등록" />
-      </box>
-    </StyledInputForm>
-  );
-}
 
 export default InputForm;

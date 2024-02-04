@@ -1,3 +1,5 @@
+import members from "data/members";
+
 const SET_MEMBER = "SET_MEMBER";
 
 export const setMember = (payload) => {
@@ -8,10 +10,9 @@ export const setMember = (payload) => {
 };
 
 const initialState = {
-  member: "카리나",
+  member: members.KARINA,
 };
 
-// 리듀서
 const selectedMember = (state = initialState, action) => {
   switch (action.type) {
     case SET_MEMBER:
@@ -23,5 +24,4 @@ const selectedMember = (state = initialState, action) => {
   }
 };
 
-// 모듈파일에서는 리듀서를 export default 한다.
 export default selectedMember;

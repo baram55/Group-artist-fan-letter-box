@@ -1,10 +1,26 @@
 import commentJson from "fakeData.json";
 
-const SET_COMMENTS = "SET_COMMENTS";
+const ADD_COMMENT = "ADD_COMMENT";
+const EDIT_COMMENT = "EDIT_COMMENT";
+const DELETE_COMMENT = "DELETE_COMMENT";
 
-export const setComments = (payload) => {
+export const addComment = (payload) => {
   return {
-    type: SET_COMMENTS,
+    type: ADD_COMMENT,
+    payload,
+  };
+};
+
+export const editComment = (payload) => {
+  return {
+    type: EDIT_COMMENT,
+    payload,
+  };
+};
+
+export const deleteComment = (payload) => {
+  return {
+    type: DELETE_COMMENT,
     payload,
   };
 };
@@ -15,17 +31,31 @@ const initialState = {
   comments: initialData,
 };
 
-// 리듀서
 const comments = (state = initialState, action) => {
   switch (action.type) {
-    case SET_COMMENTS:
+    case ADD_COMMENT:
       return {
         comments: action.payload,
+        ...state.comments,
+      };
+    case EDIT_COMMENT:
+      return {
+        comments: state.comments.map((item) => {
+          const newComment = action.payload;
+          if (item.id === newComment.id) {
+            item.content = newComment.content;
+            item.date = newComment.date.getFormattedDate();
+          }
+          return item;
+        }),
+      };
+    case DELETE_COMMENT:
+      return {
+        comments: state.comments.filter((item) => item.id !== action.payload),
       };
     default:
       return state;
   }
 };
 
-// 모듈파일에서는 리듀서를 export default 한다.
 export default comments;

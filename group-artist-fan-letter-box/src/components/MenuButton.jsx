@@ -3,6 +3,27 @@ import { useDispatch } from "react-redux";
 import { setMember } from "store/modules/selectedMember";
 import styled from "styled-components";
 
+function MenuButton({ name, member }) {
+  const dispatch = useDispatch();
+  const selectMember = () => {
+    dispatch(setMember(name));
+  };
+  const buttonRef = useRef("");
+
+  return (
+    <StyledButton
+      onClick={() => {
+        selectMember(name);
+      }}
+      ref={buttonRef}
+      name={name}
+      member={member}
+    >
+      {name}
+    </StyledButton>
+  );
+}
+
 const StyledButton = styled.button`
   width: 100px;
   height: 50px;
@@ -28,27 +49,5 @@ const StyledButton = styled.button`
     transform: scale(1);
   }
 `;
-
-function MenuButton(props) {
-  const name = props.name;
-  const dispatch = useDispatch();
-  const selectMember = () => {
-    dispatch(setMember(name));
-  };
-  const buttonRef = useRef("");
-
-  return (
-    <StyledButton
-      onClick={() => {
-        selectMember(name);
-      }}
-      ref={buttonRef}
-      name={props.name}
-      member={props.member}
-    >
-      {name}
-    </StyledButton>
-  );
-}
 
 export default MenuButton;

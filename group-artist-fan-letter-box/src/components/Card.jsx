@@ -3,6 +3,33 @@ import styled from "styled-components";
 import userImg from "assets/user.svg";
 import { useNavigate } from "react-router-dom";
 
+function Card(props) {
+  const { id, nickName, content, date } = props.comment;
+  const navigate = useNavigate();
+
+  return (
+    <StyledCard
+      key={id}
+      onClick={() => {
+        navigate(`detail/${id}`, {
+          state: { comment: props.comment },
+        });
+      }}
+    >
+      <box>
+        <StyledUserImg src={userImg} alt="이미지 없음" />
+      </box>
+      <StyledInfoBox>
+        <p>{nickName}</p>
+        <br />
+        <p>{date}</p>
+        <br />
+        <StyledContent>{content}</StyledContent>
+      </StyledInfoBox>
+    </StyledCard>
+  );
+}
+
 const StyledCard = styled.div`
   display: flex;
   flex-direction: row;
@@ -40,32 +67,5 @@ const StyledContent = styled.p`
   white-space: nowrap;
   text-overflow: ellipsis;
 `;
-
-function Card(props) {
-  const { id, nickName, content, date } = props.comment;
-  const navigate = useNavigate();
-
-  return (
-    <StyledCard
-      key={id}
-      onClick={() => {
-        navigate(`detail/${id}`, {
-          state: { comment: props.comment },
-        });
-      }}
-    >
-      <box>
-        <StyledUserImg src={userImg} alt="이미지 없음" />
-      </box>
-      <StyledInfoBox>
-        <p>{nickName}</p>
-        <br />
-        <p>{date}</p>
-        <br />
-        <StyledContent>{content}</StyledContent>
-      </StyledInfoBox>
-    </StyledCard>
-  );
-}
 
 export default Card;

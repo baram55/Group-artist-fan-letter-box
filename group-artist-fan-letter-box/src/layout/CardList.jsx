@@ -2,6 +2,28 @@ import styled from "styled-components";
 import Card from "components/Card";
 import { useSelector } from "react-redux";
 
+function CardList() {
+  const member = useSelector((state) => state.selectedMember.member);
+  const comments = useSelector((state) => state.comments.comments).filter(
+    (item) => item.member === member
+  );
+
+  return (
+    <StyledCardList>
+      {comments.length > 0 ? (
+        comments.map((item) => {
+          return <Card comment={item} />;
+        })
+      ) : (
+        <StyledNoCard>
+          {member}에게 남겨진 팬레터가 없습니다. 첫 번째 팬레터의 주인공이
+          되주세요!
+        </StyledNoCard>
+      )}
+    </StyledCardList>
+  );
+}
+
 const StyledCardList = styled.div`
   display: flex;
   flex-direction: column;
@@ -23,27 +45,5 @@ const StyledNoCard = styled.div`
   margin: 10px auto 10px auto;
   padding: 10px;
 `;
-
-function CardList() {
-  const member = useSelector((state) => state.selectedMember.member); //useContext(MemberContext).member;
-  const comments = useSelector((state) => state.comments.comments).filter(
-    (item) => item.member === member
-  );
-
-  return (
-    <StyledCardList>
-      {comments.length > 0 ? (
-        comments.map((item) => {
-          return <Card comment={item} />;
-        })
-      ) : (
-        <StyledNoCard>
-          {member}에게 남겨진 팬레터가 없습니다. 첫 번째 팬레터의 주인공이
-          되주세요!
-        </StyledNoCard>
-      )}
-    </StyledCardList>
-  );
-}
 
 export default CardList;
