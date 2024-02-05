@@ -16,9 +16,9 @@ function Card({ comment }) {
         });
       }}
     >
-      <box>
+      <div>
         <StyledUserImg src={userImg} alt="이미지 없음" />
-      </box>
+      </div>
       <StyledInfoBox>
         <p>{nickName}</p>
         <br />

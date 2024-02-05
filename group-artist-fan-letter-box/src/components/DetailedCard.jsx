@@ -33,6 +33,7 @@ function DetailedCard({ comment }) {
   };
 
   const editDoneHandler = (event) => {
+    event.preventDefault();
     let currentContentTextArea = event.target.content.value;
     if (currentContentTextArea === comment.content) {
       alert("수정된 부분이 없습니다.");
@@ -49,14 +50,14 @@ function DetailedCard({ comment }) {
 
   return (
     <StyledDetailedCardForm onSubmit={(event) => editDoneHandler(event)}>
-      <box>
+      <div>
         <StyledUserInfo>
           <StyledUserImg src={userImg} alt="이미지 없음" />
-          <StyledNickName name="nickName">{comment.nickName}</StyledNickName>
+          <StyledNickName>{comment.nickName}</StyledNickName>
 
           <p>{comment.date}</p>
         </StyledUserInfo>
-      </box>
+      </div>
       <StyledToMember>TO : {comment.member}</StyledToMember>
       <StyledContent
         name="content"
@@ -69,7 +70,7 @@ function DetailedCard({ comment }) {
       >
         {comment.content}
       </StyledContent>
-      <box>
+      <div>
         {editMode ? (
           <>
             <StyledDelete onClick={deleteHandler}>삭제</StyledDelete>
@@ -80,10 +81,11 @@ function DetailedCard({ comment }) {
         ) : (
           <StyledEdit onClick={editHandler}>수정</StyledEdit>
         )}
-      </box>
+      </div>
     </StyledDetailedCardForm>
   );
 }
+export default DetailedCard;
 
 const StyledDetailedCardForm = styled.form`
   display: flex;
@@ -98,7 +100,7 @@ const StyledDetailedCardForm = styled.form`
 
 const StyledUserInfo = styled.div`
   display: flex;
-  flex-direction: rows;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   color: white;
@@ -144,6 +146,7 @@ const StyledEdit = styled.button`
   margin: 10px;
   float: right;
   padding: 5px;
+
   &:hover {
     background-color: yellow;
     color: black;
@@ -200,5 +203,3 @@ const StyledEditDone = styled.button`
     transform: scale(1);
   }
 `;
-
-export default DetailedCard;
