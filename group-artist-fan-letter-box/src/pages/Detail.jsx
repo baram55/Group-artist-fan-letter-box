@@ -18,6 +18,7 @@ function Detail() {
   const navigate = useNavigate();
   const location = useLocation();
   const comment = location.state.comment;
+  console.log(comment);
 
   return (
     <>

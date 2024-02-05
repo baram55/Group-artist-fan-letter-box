@@ -3,8 +3,8 @@ import styled from "styled-components";
 import userImg from "assets/user.svg";
 import { useNavigate } from "react-router-dom";
 
-function Card(props) {
-  const { id, nickName, content, date } = props.comment;
+function Card({ comment }) {
+  const { id, nickName, content, date } = comment;
   const navigate = useNavigate();
 
   return (
@@ -12,7 +12,7 @@ function Card(props) {
       key={id}
       onClick={() => {
         navigate(`detail/${id}`, {
-          state: { comment: props.comment },
+          state: { comment },
         });
       }}
     >

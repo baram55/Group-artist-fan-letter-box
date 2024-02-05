@@ -1,4 +1,5 @@
 import commentJson from "fakeData.json";
+import getFormattedDate from "util/getFormattedDate";
 
 const ADD_COMMENT = "ADD_COMMENT";
 const EDIT_COMMENT = "EDIT_COMMENT";
@@ -43,7 +44,7 @@ const comments = (state = initialState, action) => {
           const newComment = action.payload;
           if (item.id === newComment.id) {
             item.content = newComment.content;
-            item.date = newComment.date.getFormattedDate();
+            item.date = getFormattedDate();
           }
           return item;
         }),

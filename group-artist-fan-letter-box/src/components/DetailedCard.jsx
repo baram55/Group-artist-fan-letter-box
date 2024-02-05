@@ -7,6 +7,7 @@ import {
   deleteComment as deleteReduxComment,
   editComment as editReduxComment,
 } from "store/modules/comments";
+import getFormattedDate from "util/getFormattedDate";
 
 function DetailedCard({ comment }) {
   const dispatch = useDispatch();
@@ -14,9 +15,11 @@ function DetailedCard({ comment }) {
     dispatch(deleteReduxComment(newComment));
   const editComment = (newComment) => dispatch(editReduxComment(newComment));
   const [editMode, setEditMode] = useState(false);
+  const [content, setContent] = useState(comment.content);
   const navigate = useNavigate();
 
   const editHandler = () => {
+    comment.content = content;
     setEditMode(true);
   };
 
@@ -45,7 +48,7 @@ function DetailedCard({ comment }) {
   };
 
   return (
-    <StyledDetailedCardForm onSubmit={editDoneHandler}>
+    <StyledDetailedCardForm onSubmit={(event) => editDoneHandler(event)}>
       <box>
         <StyledUserInfo>
           <StyledUserImg src={userImg} alt="이미지 없음" />
@@ -55,7 +58,15 @@ function DetailedCard({ comment }) {
         </StyledUserInfo>
       </box>
       <StyledToMember>TO : {comment.member}</StyledToMember>
-      <StyledContent name="content" maxLength={100} disabled={!editMode}>
+      <StyledContent
+        name="content"
+        value={content}
+        onChange={(event) => {
+          setContent(event.target.value);
+        }}
+        maxLength={100}
+        disabled={!editMode}
+      >
         {comment.content}
       </StyledContent>
       <box>
