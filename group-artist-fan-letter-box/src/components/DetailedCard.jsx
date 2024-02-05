@@ -15,21 +15,8 @@ function DetailedCard({ comment }) {
   const editComment = (newComment) => dispatch(editReduxComment(newComment));
   const [editMode, setEditMode] = useState(false);
   const navigate = useNavigate();
-  const prevComment = useRef("");
 
-  const editHandler = (event) => {
-    {//NOTE - 이렇게 하는게 맞나요? }
-    const editButton = event.target.edit;
-    const deleteButton = event.target.delete;
-    const editDoneButton = event.target.editDone;
-    const contentTextArea = event.target.content;
-
-    contentTextArea.disabled = false;
-    prevComment.current = contentTextArea.value;
-    editButton.style.setProperty("display", "none");
-    deleteButton.style.setProperty("display", "none");
-    editDoneButton.style.setProperty("display", "none");
-
+  const editHandler = () => {
     setEditMode(true);
   };
 
@@ -45,22 +32,20 @@ function DetailedCard({ comment }) {
 
   const editDoneHandler = (event) => {
     let currentContentTextArea = event.target.content.value;
-    if (currentContentTextArea === prevComment.current) {
+    if (currentContentTextArea === comment.content) {
       alert("수정된 부분이 없습니다.");
     } else {
       const changeFlag = window.confirm("이대로 수정하시겠습니까?");
-
       if (changeFlag) {
+        comment.content = currentContentTextArea;
         editComment(comment);
         navigate("/");
-      } else {
-        currentContentTextArea = prevComment.current;
       }
     }
   };
 
   return (
-    <StyledDetailedCardForm>
+    <StyledDetailedCardForm onSubmit={editDoneHandler}>
       <box>
         <StyledUserInfo>
           <StyledUserImg src={userImg} alt="이미지 없음" />
@@ -70,23 +55,20 @@ function DetailedCard({ comment }) {
         </StyledUserInfo>
       </box>
       <StyledToMember>TO : {comment.member}</StyledToMember>
-      <StyledContent name="content" maxLength={100} disabled>
+      <StyledContent name="content" maxLength={100} disabled={!editMode}>
         {comment.content}
       </StyledContent>
       <box>
-        <StyledDelete type="button" name="delete" onClick={deleteHandler}>
-          삭제
-        </StyledDelete>
-        <StyledEdit
-          type="button"
-          name="edit"
-          onClick={(event) => editHandler(event)}
-        >
-          수정
-        </StyledEdit>
-        <StyledEditDone type="button" name="editDone" onClick={editDoneHandler}>
-          수정완료
-        </StyledEditDone>
+        {editMode ? (
+          <>
+            <StyledDelete onClick={deleteHandler}>삭제</StyledDelete>
+            <StyledEditDone type="submit" name="editDone">
+              수정완료
+            </StyledEditDone>
+          </>
+        ) : (
+          <StyledEdit onClick={editHandler}>수정</StyledEdit>
+        )}
       </box>
     </StyledDetailedCardForm>
   );
@@ -140,7 +122,7 @@ const StyledContent = styled.textarea`
   resize: none;
 `;
 
-const StyledEdit = styled.input`
+const StyledEdit = styled.button`
   display: inline;
   width: auto;
   height: auto;
@@ -163,7 +145,7 @@ const StyledEdit = styled.input`
   }
 `;
 
-const StyledDelete = styled.input`
+const StyledDelete = styled.button`
   display: inline;
   width: auto;
   height: auto;
@@ -186,8 +168,7 @@ const StyledDelete = styled.input`
   }
 `;
 
-const StyledEditDone = styled.input`
-  display: none;
+const StyledEditDone = styled.button`
   width: auto;
   height: auto;
   font-size: 30px;

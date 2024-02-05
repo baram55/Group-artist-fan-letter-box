@@ -35,8 +35,7 @@ const comments = (state = initialState, action) => {
   switch (action.type) {
     case ADD_COMMENT:
       return {
-        comments: action.payload,
-        ...state.comments,
+        comments: [action.payload, ...state.comments],
       };
     case EDIT_COMMENT:
       return {
