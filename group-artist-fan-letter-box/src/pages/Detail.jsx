@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import DetailedCard from "components/DetailedCard";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const StyledButton = styled.button`
   width: auto;
@@ -16,9 +17,9 @@ const StyledButton = styled.button`
 
 function Detail() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const comment = location.state.comment;
-  console.log(comment);
+  const params = useParams();
+  const comments = useSelector((state) => state.comments.comments);
+  const comment = comments.filter((item) => item.id === params.id);
 
   return (
     <>
@@ -32,7 +33,7 @@ function Detail() {
         </StyledButton>
       </box>
       <box>
-        <DetailedCard comment={comment} />
+        <DetailedCard comment={comment[0]} />
       </box>
     </>
   );

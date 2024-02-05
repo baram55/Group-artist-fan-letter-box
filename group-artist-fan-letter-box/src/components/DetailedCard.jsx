@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import userImg from "assets/user.svg";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +7,6 @@ import {
   deleteComment as deleteReduxComment,
   editComment as editReduxComment,
 } from "store/modules/comments";
-import getFormattedDate from "util/getFormattedDate";
 
 function DetailedCard({ comment }) {
   const dispatch = useDispatch();
@@ -37,6 +36,7 @@ function DetailedCard({ comment }) {
     let currentContentTextArea = event.target.content.value;
     if (currentContentTextArea === comment.content) {
       alert("수정된 부분이 없습니다.");
+      return;
     } else {
       const changeFlag = window.confirm("이대로 수정하시겠습니까?");
       if (changeFlag) {
